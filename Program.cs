@@ -44,7 +44,7 @@ namespace app {
             if(customer.hours >= 24) return this.maxFee24Hrs;
 
             double fee = this.baseFee + (customer.hours - 3) * this.fee;
-			if(fee >= this.maxFee24Hrs) return 10.0;
+			if(fee >= this.maxFee24Hrs) return this.maxFee24Hrs;
             return fee;
         }
     }
