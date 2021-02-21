@@ -43,7 +43,9 @@ namespace app {
             if(customer.hours <= 3) return this.baseFee;
             if(customer.hours >= 24) return this.maxFee24Hrs;
 
-            return this.baseFee + (customer.hours - 3) * this.fee;
+            double fee = this.baseFee + (customer.hours - 3) * this.fee;
+			if(fee >= this.maxFee24Hrs) return 10.0;
+            return fee;
         }
     }
     
@@ -76,6 +78,15 @@ namespace app {
             garage.add(loic);
             loic.setHours(24);
 
+
+            for(int i = 0; i <= 25; i++) {
+                Customer a = new Customer(i.ToString());
+                garage.add(a);
+                a.setHours(i);
+            }
+
+
+            
             garage.displayCharges();
         }
     }
